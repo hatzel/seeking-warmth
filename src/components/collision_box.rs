@@ -17,9 +17,9 @@ impl AABB {
     fn collides(&self, transform: &Transform, other: &Self, other_transform: &Transform) -> bool {
         let delta_x = (transform.translation().x - other_transform.translation().x).abs();
         let delta_y = (transform.translation().y - other_transform.translation().y).abs();
-        if (delta_x <= (self.height + other.height) * 0.5) {
+        if delta_x <= (self.height + other.height) * 0.5 {
             true
-        } else if (delta_y <= (self.width + other.width) * 0.5) {
+        } else if delta_y <= (self.width + other.width) * 0.5 {
             true
         } else {
             false
