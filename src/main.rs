@@ -55,6 +55,7 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
         .with(systems::PlayerControlSystem, "player_control_system", &["input_system"])
+        .with(systems::WeightSystem, "weight_system", &["player_control_system"])
         .with_barrier()
         .with(systems::MovementSystem, "movement_system", &["player_control_system"]);
     ;

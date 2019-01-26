@@ -15,6 +15,7 @@ use amethyst::{
 };
 use crate::components::{Player, Movement};
 use crate::components::player::{PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_VELOCITY};
+use crate::components::Weight;
 
 
 pub struct SeekingWarmth;
@@ -98,5 +99,6 @@ fn initialise_player(world: &mut World, sprite_sheet_handle: SpriteSheetHandle) 
             velocity: PLAYER_VELOCITY,
         })
         .with(player_transform)
+        .with(Weight::new())
         .build();
 }
