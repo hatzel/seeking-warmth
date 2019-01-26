@@ -1,0 +1,10 @@
+(
+  dimensions: Some((800, 600)),
+  max_dimensions: Some((800, 600)),
+  min_dimensions: Some((800, 600)),
+  fullscreen: false,
+  multisampling: 0,
+  title: "Seeking Warmth",
+  visibility: true,
+  vsync: true,
+)

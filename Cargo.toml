@@ -1,0 +1,9 @@
+[package]
+name = "seeking-warmth"
+version = "0.1.0"
+authors = ["Julian Deinert <j.deinert@gmx.net>", "Hans Ole Hatzel <hhatzel@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+amethyst = "0.10"
+log = "0.4"
