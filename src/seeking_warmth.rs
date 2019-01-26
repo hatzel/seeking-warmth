@@ -13,7 +13,7 @@ use amethyst::{
     },
     ui::{Anchor, TtfFormat, UiText, UiTransform},
 };
-use crate::components::Player;
+use crate::components::{Player, Movement};
 use crate::components::player::{PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_VELOCITY};
 
 
@@ -91,6 +91,7 @@ fn initialise_player(world: &mut World, sprite_sheet_handle: SpriteSheetHandle) 
     world
         .create_entity()
         .with(sprite_render.clone())
+        .with(Movement::new())
         .with(Player {
             width: PLAYER_WIDTH,
             height: PLAYER_HEIGHT,

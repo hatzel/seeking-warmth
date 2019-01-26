@@ -1,3 +1,5 @@
-mod player_movement;
+mod player_control;
+mod movement;
 
-pub use self::player_movement::PlayerMovementSystem;
+pub use self::player_control::PlayerControlSystem;
+pub use self::movement::MovementSystem;

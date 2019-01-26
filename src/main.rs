@@ -51,7 +51,9 @@ fn main() -> amethyst::Result<()> {
         .with_bundle(RenderBundle::new(pipe, Some(config)).with_sprite_sheet_processor())?
         .with_bundle(TransformBundle::new())?
         .with_bundle(input_bundle)?
-        .with(systems::PlayerMovementSystem, "player_movement_system", &["input_system"]);
+        .with(systems::PlayerControlSystem, "player_control_system", &["input_system"])
+        .with_barrier()
+        .with(systems::MovementSystem, "movement_system", &["player_control_system"]);
     ;
     let mut game = Application::build(assets_dir, seeking_warmth::SeekingWarmth)?
         .with_frame_limit(
