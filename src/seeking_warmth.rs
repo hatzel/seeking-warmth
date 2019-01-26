@@ -13,7 +13,8 @@ use amethyst::{
     },
     ui::{Anchor, TtfFormat, UiText, UiTransform},
 };
-use crate::Player;
+use crate::components::Player;
+use crate::components::player::{PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_VELOCITY};
 
 
 pub struct SeekingWarmth;
@@ -29,8 +30,8 @@ impl SimpleState for SeekingWarmth {
     }
 }
 
-pub const CAMERA_WIDTH: f32 = 800.0;
-pub const CAMERA_HEIGHT: f32 = 600.0;
+pub const CAMERA_WIDTH: f32 = 400.0;
+pub const CAMERA_HEIGHT: f32 = 300.0;
 
 fn initialise_camera(world: &mut World) {
     let mut transform = Transform::default();
@@ -76,7 +77,6 @@ fn load_sprite_sheet(world: &mut World) -> SpriteSheetHandle {
 }
 
 fn initialise_player(world: &mut World, sprite_sheet_handle: SpriteSheetHandle) {
-    use crate::{PLAYER_HEIGHT, PLAYER_VELOCITY, PLAYER_WIDTH};
 
     let mut player_transform = Transform::default();
 

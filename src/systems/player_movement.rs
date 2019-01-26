@@ -5,7 +5,8 @@ use amethyst::input::InputHandler;
 
 // You'll have to mark PADDLE_HEIGHT as public in pong.rs
 use crate::seeking_warmth::{CAMERA_HEIGHT};
-use crate::Player;
+use crate::components::Player;
+//use crate::components::
 
 pub struct PlayerMovementSystem;
 
