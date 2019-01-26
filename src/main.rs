@@ -19,7 +19,10 @@ mod components;
 
 
 fn main() -> amethyst::Result<()> {
-    amethyst::start_logger(Default::default());
+    amethyst::Logger::from_config(Default::default())
+        .level_for("gfx_device_gl", amethyst::LogLevelFilter::Warn)
+        .level_for("gfx_glyph", amethyst::LogLevelFilter::Error)
+        .start();
 
     warn!("LOL");
 

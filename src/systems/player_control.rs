@@ -4,6 +4,7 @@ use amethyst::ecs::{Join, Read, ReadStorage, System, WriteStorage};
 use amethyst::input::InputHandler;
 use crate::components::Movement;
 use nalgebra::Vector2;
+use amethyst::renderer::VirtualKeyCode;
 
 // You'll have to mark PADDLE_HEIGHT as public in pong.rs
 use crate::seeking_warmth::{CAMERA_HEIGHT};
@@ -24,11 +25,10 @@ impl<'s> System<'s> for PlayerControlSystem {
         for (player, movement) in (&players, &mut movements).join() {
             let opt_movement_val = input.axis_value("player_x");
             if let Some(movement_val) = opt_movement_val {
-                // TODO: use player velocity again
                 movement.acceleration += Vector2::new(player.velocity * movement_val as f32, 0.0);
-                if movement.acceleration.y != 0.0 {
-                    println!("Adding to acceleration {}", player.velocity * movement_val as f32);
-                    println!("New accelleration {}", movement.acceleration);
+
+                if input.key_is_down(VirtualKeyCode::Space) {
+                    movement.acceleration += Vector2::new(0.0, 100.0);
                 }
             }
         }

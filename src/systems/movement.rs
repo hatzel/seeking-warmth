@@ -23,8 +23,7 @@ impl<'s> System<'s> for MovementSystem {
     fn run(&mut self, (mut movements, mut transforms, time): Self::SystemData) {
         for (movement, transform) in (&mut movements, &mut transforms).join() {
             movement.velocity += movement.acceleration;
-            movement.velocity.x = nalgebra::clamp(movement.velocity.x, -movement.max_velocity.x, movement.max_velocity.x);
-            movement.velocity.y = nalgebra::clamp(movement.velocity.y, -movement.max_velocity.y, movement.max_velocity.y);
+            movement.velocity.x -= movement.velocity.x * movement.drag;
             let delta_pos = movement.velocity * time.delta_seconds();
             // debug!("Acceleration: {}", movement.acceleration);
             // debug!("Velocity: {}", movement.velocity);

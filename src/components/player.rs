@@ -2,7 +2,7 @@ use amethyst::ecs::prelude::*;
 
 pub const PLAYER_HEIGHT: f32 = 34.0;
 pub const PLAYER_WIDTH: f32 = 19.0;
-pub const PLAYER_VELOCITY: f32 = 10.0;
+pub const PLAYER_VELOCITY: f32 = 50.0;
 
 pub struct Player {
     pub velocity: f32,
