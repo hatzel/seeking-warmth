@@ -13,10 +13,11 @@ use amethyst::{
 use std::time::Duration;
 
 mod seeking_warmth;
+mod systems;
 
 pub const PLAYER_HEIGHT: f32 = 34.0;
 pub const PLAYER_WIDTH: f32 = 19.0;
-pub const PLAYER_VELOCITY: f32 = 10.0;
+pub const PLAYER_VELOCITY: f32 = 300.0;
 
 pub struct Player {
     pub velocity: f32,
@@ -51,6 +52,15 @@ fn main() -> amethyst::Result<()> {
 
     let config = DisplayConfig::load(&config_path);
 
+    let binding_path = format!(
+        "{}/resources/bindings_config.ron",
+        root_dir
+    );
+
+    let input_bundle = InputBundle::<String, String>::new()
+        .with_bindings_from_file(binding_path)?;
+
+
     let pipe = Pipeline::build()
         .with_stage(
             Stage::with_backbuffer()
@@ -60,7 +70,10 @@ fn main() -> amethyst::Result<()> {
 
     let game_data = GameDataBuilder::default()
         .with_bundle(RenderBundle::new(pipe, Some(config)).with_sprite_sheet_processor())?
-        .with_bundle(TransformBundle::new())?;
+        .with_bundle(TransformBundle::new())?
+        .with_bundle(input_bundle)?
+        .with(systems::PlayerMovementSystem, "player_movement_system", &["input_system"]);
+    ;
     let mut game = Application::build(assets_dir, seeking_warmth::SeekingWarmth)?
         .with_frame_limit(
             FrameRateLimitStrategy::SleepAndYield(Duration::from_millis(2)),
